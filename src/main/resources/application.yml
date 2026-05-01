@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: PocketBills
+  datasource:
+    url: jdbc:postgresql://aws-1-eu-central-1.pooler.supabase.com:5432/postgres
+    username: postgres.aqbotbfwnnlvifgwxlku
+    password: 0M2eeaIiQeUU07y1
+  jpa:
+    hibernate:
+      ddl-auto: update
+#    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+jwt:
+  secret: mySuperSecretKeyForCommunalProject2026ChangeThisInProduction!!!
+  expiration: 86400000   # 24 години
+# Swagger
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+  api-docs:
+    path: /v3/api-docs
+
+# Для розробки
+logging:
+  level:
+    org.springframework.web: trace
+#    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
