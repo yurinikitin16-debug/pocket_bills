@@ -5,18 +5,14 @@ WORKDIR /app
 COPY .mvn .mvn
 COPY mvnw pom.xml ./
 RUN chmod +x mvnw
-RUN ./mvnw dependency:go-offline
+RUN ./mvnw dependency:go-offline -DskipTests
 
 COPY src src
-RUN ./mvnw clean package -DskipTests
-
+RUN ./mvnw package -DskipTests
 
 FROM eclipse-temurin:21-jre
 
 WORKDIR /app
-
 COPY --from=build /app/target/*.jar app.jar
-
-EXPOSE 8080
 
 CMD java -Dserver.port=${PORT:-8080} -jar app.jar

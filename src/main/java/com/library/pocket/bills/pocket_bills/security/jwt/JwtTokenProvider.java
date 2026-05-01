@@ -65,19 +65,6 @@ public class JwtTokenProvider {
         }
     }
 
-    /**
-     * Витягує UserId з токена
-     */
-    public Long getUserIdFromToken(String token) {
-        Claims claims = Jwts.parser()
-                .verifyWith(getSigningKey())
-                .build()
-                .parseSignedClaims(token)
-                .getPayload();
-
-        return claims.get("userId", Long.class);
-    }
-
     public long getExpirationSeconds() {
         return jwtExpirationMs / 1000;
     }
